@@ -201,3 +201,20 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+
+" yaml config
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+let g:indentLine_char = '⦙'
+
+"add these lines to your vimrc to configure syntastic & yamllint
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1            " automatically load errors into the location list
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1                       " check for errors when a file is loaded
+
+let g:syntastic_check_on_wq = 0
+let g:syntastic_yaml_checkers = [ "yamllint" ]
+let g:syntastic_quiet_messages = { "type": "style" }
